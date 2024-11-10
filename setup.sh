@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
+set -eu
 
 # Step 1: Clone the git repo in the current directory
 echo "Cloning the repository..."
