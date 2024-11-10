@@ -2,6 +2,11 @@
 
 set -eu
 
+# If the current directory is empty outside of hidden files, use the base name of the folder
+if [ -z "$(ls -A | grep -v '^\..*')" ]; then
+  project_name=$(basename "$PWD")
+fi
+
 # Step 1: Clone the git repo in the current directory
 echo "Cloning the repository..."
 git clone https://github.com/iloveitaly/python-package-template.git
@@ -9,11 +14,8 @@ shopt -s dotglob
 mv python-package-template/* .
 shopt -u dotglob
 
-# If the current directory is empty outside of hidden files, use the base name of the folder
-if [ -z "$(ls -A | grep -v '^\..*')" ]; then
-  project_name=$(basename "$PWD")
-else
-  # Step 2: Ask for the project name
+# Step 2: Ask for the project name
+if [ -z "$project_name" ]; then
   read -p "Enter the project name: " project_name </dev/tty
 fi
 
