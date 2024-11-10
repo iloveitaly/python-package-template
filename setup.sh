@@ -70,6 +70,7 @@ grep -rl 'Your Name' . | xargs sed -i '' "s/Your Name/$full_name/g"
 rm setup.sh
 rm README.md
 touch README.md
+rm CHANGELOG.md
 
 rm -rf .git
 git init .
