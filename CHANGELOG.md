@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/iloveitaly/python-package-template/compare/v0.1.0...v0.2.0) (2024-11-10)
+
+
+### Features
+
+* add new file to the project ([422b6a9](https://github.com/iloveitaly/python-package-template/commit/422b6a9ae1381167f92e33bc7004f4a33f24f7be))
+
+
+
 # [0.1.0](https://github.com/iloveitaly/python-package-template/compare/v0.0.1...v0.1.0) (2024-11-10)
 
 
