@@ -1,16 +1,16 @@
 [project]
-name = "python-project-template"
+name = "python-package-template"
 version = "0.0.0"
 description = ""
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
-authors = [{ name = "Michael Bianco", email = "mike@mikebian.co" }]
+authors = [{ name = "Your Name", email = "your@email.com" }]
 keywords = []
-urls = { "Repository" = "https://github.com/iloveitaly/python-project-template" }
+urls = { "Repository" = "https://github.com/github-username/python-package-template" }
 
 [project.scripts]
-python-project-template = "python_project_template:main"
+python-package-template = "python_package_template:main"
 
 # https://github.com/astral-sh/uv/issues/5200
 [tool.uv]
