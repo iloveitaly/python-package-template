@@ -9,8 +9,13 @@ shopt -s dotglob
 mv python-package-template/* .
 shopt -u dotglob
 
-# Step 2: Ask for the project name
-read -p "Enter the project name: " project_name </dev/tty
+# If the current directory is empty outside of hidden files, use the base name of the folder
+if [ -z "$(ls -A | grep -v '^\..*')" ]; then
+  project_name=$(basename "$PWD")
+else
+  # Step 2: Ask for the project name
+  read -p "Enter the project name: " project_name </dev/tty
+fi
 
 # Step 3: Generate package_name and file_system_package_name
 package_name=$project_name
@@ -35,9 +40,6 @@ fi
 # Step 7: Replace all instances of 'your@email.com' with $user_email
 echo "Replacing instances of 'your@email.com' with '$user_email'..."
 grep -rl 'your@email.com' . | xargs sed -i '' "s/your@email.com/$user_email/g"
-
-# Step 8: Ask for the GitHub username
-read -p "Enter your GitHub username: " github_username </dev/tty
 
 # Step 9: Replace all instances of 'github-username' with $github_username
 # Attempt to get GitHub username from git config
