@@ -1,0 +1,12 @@
+{
+  "description": "A starter template for building python packages that you intend to distribute as open source repos",
+  "homepage": "https://github.com/iloveitaly/python-package-template",
+  "keywords": [
+    "python",
+    "package",
+    "template",
+    "starter",
+    "boilerplate",
+    "skeleton"
+  ]
+}
