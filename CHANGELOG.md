@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/iloveitaly/python-package-template/compare/v0.2.0...v0.2.1) (2024-11-16)
+
+
+### Bug Fixes
+
+* update uv version and add packaging info in toml ([96840d0](https://github.com/iloveitaly/python-package-template/commit/96840d0cae0b45cb0ef91b34c7544e8000b237c9))
+
+
+
 # [0.2.0](https://github.com/iloveitaly/python-package-template/compare/v0.1.0...v0.2.0) (2024-11-10)
 
 
