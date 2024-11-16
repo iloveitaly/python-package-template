@@ -9,6 +9,7 @@ authors = [{ name = "Your Name", email = "your@email.com" }]
 keywords = []
 urls = { "Repository" = "https://github.com/github-username/python-package-template" }
 
+# additional packaging information: https://packaging.python.org/en/latest/specifications/core-metadata/#license
 [project.scripts]
 python-package-template = "python_package_template:main"
 
