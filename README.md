@@ -5,7 +5,8 @@ Do you like building python packages? Do you hate configuring all of the things?
 This is for you. Create a new folder with your package name, then run the following script:
 
 ```shell
-curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/iloveitaly/python-package-template/refs/heads/master/setup.sh | bash -s
+mkdir your-project
+uv tool run --with jinja2_shell_extension copier@latest copy https://github.com/iloveitaly/python-package-template . --trust
 ```
 
 ## What is Provided?

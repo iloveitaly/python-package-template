@@ -56,7 +56,7 @@ jobs:
           github-token: ${{ secrets.github_token }}
           version-file: "./pyproject.toml"
           version-path: "project.version"
-          fallback-version: "1.0.0"
+          fallback-version: "0.1.0"
           output-file: "CHANGELOG.md"
 
       # NOTE must run after versioning otherwise the right version won't be pushed

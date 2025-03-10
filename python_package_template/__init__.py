@@ -9,5 +9,4 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    print("Hello World!")
     logger.info("Hello, Logs!")

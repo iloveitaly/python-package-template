@@ -17,5 +17,9 @@ python-package-template = "python_package_template:main"
 [tool.uv]
 package = true
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [dependency-groups]
 dev = ["pytest>=8.3.3"]
