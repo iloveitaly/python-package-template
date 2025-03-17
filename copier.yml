@@ -5,6 +5,8 @@
 
 _min_copier_version: 9.4.1
 
+_answers_file: .copier/.copier-answers.yml
+
 _jinja_extensions:
   - jinja2_shell_extension.ShellExtension
 
