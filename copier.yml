@@ -53,9 +53,9 @@ _exclude:
 _tasks:
   - git init
   - touch README.md
+  - uv sync
   - git add -A
   - git commit -m "🎉 Initial commit"
-  - uv sync
   # - ["{{ _copier_python }}", .copier/bootstrap.py]
 
 # although it's annoying to have the .copier-answers.yml file in the root, it allows `copier update`
