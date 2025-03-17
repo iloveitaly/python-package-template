@@ -10,11 +10,6 @@ _answers_file: .copier/.copier-answers.yml
 _jinja_extensions:
   - jinja2_shell_extension.ShellExtension
 
-_message_before_copy: >-
-  IMPORTANT!!
-
-  Install mise and docker before continuing.
-
 _message_after_copy: |
   Next steps:
 
@@ -25,7 +20,7 @@ project_slug:
   type: str
   help: Dash separated project slug
   validator: >-
-    {% if not (project_slug | regex_search('^[a-z][a-z0-9-]+$')) %}
+    {% if not (project_slug | regex_search('^[a-z][a-z0-9-_]+$')) %}
     project_slug must start with a letter, followed one or more letters, digits or dashes all lowercase.
     {% endif %}
 
