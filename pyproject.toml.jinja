@@ -1,17 +1,17 @@
 [project]
-name = "python-package-template"
-version = "0.2.1"
+name = "{{project_name}}"
+version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 dependencies = []
-authors = [{ name = "Your Name", email = "your@email.com" }]
+authors = [{ name = "{{full_name}}", email = "{{email}}" }]
 keywords = []
-urls = { "Repository" = "https://github.com/iloveitaly/python-package-template" }
+urls = { "Repository" = "https://github.com/{{github_username}}/{{project_name}}" }
 
 # additional packaging information: https://packaging.python.org/en/latest/specifications/core-metadata/#license
 [project.scripts]
-python-package-template = "python_package_template:main"
+{{project_name}} = "{{project_name}}:main"
 
 # https://github.com/astral-sh/uv/issues/5200
 [tool.uv]

@@ -19,6 +19,29 @@ _message_after_copy: |
     1. Customize secrets in .envrc
     2. Have fun!
 
+project_slug:
+  type: str
+  help: Dash separated project slug
+  validator: >-
+    {% if not (project_slug | regex_search('^[a-z][a-z0-9-]+$')) %}
+    project_slug must start with a letter, followed one or more letters, digits or dashes all lowercase.
+    {% endif %}
+
+full_name:
+  type: str
+  help: Full name of the project owner
+  default: "{{ \"git config --global user.name\" | shell() | trim }}"
+
+email:
+  type: str
+  help: Full name of the project owner
+  default: "{{ \"git config --global user.email\" | shell() | trim }}"
+
+github_username:
+  type: str
+  help: Base URL of the container registry to push to
+  default: "{{ \"gh api user --jq '.login'\" | shell() | trim }}"
+
 _exclude:
   - TODO
   - /.git
@@ -31,9 +54,6 @@ _tasks:
   - git init
   - git add -A
   - git commit -m "🎉 Initial commit"
-  - setup.sh
-  - rm setup.sh
-  - git commit -m "updated with answers"
   # - ["{{ _copier_python }}", .copier/bootstrap.py]
   # - git add -A
 
