@@ -6,7 +6,8 @@ This is for you. Create a new folder with your package name, then run the follow
 
 ```shell
 mkdir your-project
-uv tool run --with jinja2_shell_extension copier@latest copy https://github.com/iloveitaly/python-package-template . --trust
+
+uv tool run --with jinja2_shell_extension copier@latest copy --trust --vcs-ref=HEAD https://github.com/iloveitaly/python-package-template .
 ```
 
 ## What is Provided?
