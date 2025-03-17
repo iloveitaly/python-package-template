@@ -14,15 +14,16 @@ _message_after_copy: |
   Next steps:
 
     1. Customize secrets in .envrc
-    2. Set PYPI_API_TOKEN on GH actions
-    3. set GH_TOKEN on GH actions
+    2. Run `direnv allow`
+    3. Set PYPI_API_TOKEN on GH actions
+    4. Set GH_TOKEN on GH actions
 
 project_name:
   type: str
   help: Dash separated project slug
   validator: >-
-    {% if not (project_slug | regex_search('^[a-z][a-z0-9-_]+$')) %}
-    project_slug must start with a letter, followed one or more letters, digits or dashes all lowercase.
+    {% if not (project_name | regex_search('^[a-z][a-z0-9-_]+$')) %}
+    project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
     {% endif %}
 
 full_name:
