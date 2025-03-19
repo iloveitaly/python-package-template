@@ -20,3 +20,7 @@ Here are the key tools and features provided:
 3. **Dependabot.**:
 4. **VS Code Settings.** Some important py config that is hard to figure out sometimes.
 5. **CLI Script Hook.** Remove if you aren't publishing a package with a CLI.
+
+## Related
+
+* https://github.com/superlinear-ai/substrate
