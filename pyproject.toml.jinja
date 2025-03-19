@@ -11,7 +11,7 @@ urls = { "Repository" = "https://github.com/{{github_username}}/{{project_name}}
 
 # additional packaging information: https://packaging.python.org/en/latest/specifications/core-metadata/#license
 [project.scripts]
-{{project_name}} = "{{project_name}}:main"
+{{project_name}} = "{{project_name_snake_case}}:main"
 
 # https://github.com/astral-sh/uv/issues/5200
 [tool.uv]

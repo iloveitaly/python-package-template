@@ -27,6 +27,11 @@ project_name:
     project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
     {% endif %}
 
+# https://github.com/superlinear-ai/substrate/blob/main/copier.yml
+project_name_snake_case:
+  when: false
+  default: "{{ project_name | lower | replace(' ', '_') }}"
+
 full_name:
   type: str
   help: Full name of the project owner (for pypi)
