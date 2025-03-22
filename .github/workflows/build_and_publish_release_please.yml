@@ -12,6 +12,9 @@ env:
 
   DATABASE_HOST: localhost
 
+  # required otherwise github api calls are rate limited
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -20,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
-      - run: direnv allow . && direnv export gha >> "$GITHUB_ENV"
+      - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv build
       - run: uv publish --token ${{ secrets.PYPI_API_TOKEN }}
 
