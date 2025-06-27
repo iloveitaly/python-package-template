@@ -1,12 +1,17 @@
 # Python Package Template
 
-Do you like building python packages? Do you hate configuring all of the things?
+Do you like building python packages? Do you hate configuring all of the things? This is for you.
 
-This is for you. Create a new folder with your package name, then run the following script:
+Create a new folder with your package name (this makes it easier to infer the package name from the folder name via copier scripts):
 
 ```shell
 mkdir your-project
+cd your-project
+```
 
+Then run the copier script to set up the package:
+
+```shell
 uv tool run --with jinja2_shell_extension copier@latest copy --trust --vcs-ref=HEAD https://github.com/iloveitaly/python-package-template .
 ```
 
