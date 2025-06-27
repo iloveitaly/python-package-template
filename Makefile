@@ -1,4 +1,4 @@
-# Justfiles are nicer, but Make is everywher
+# Justfiles are nicer, but Make is everywhere
 
 setup:
 	uv venv && uv sync
