@@ -1,3 +1,2 @@
 - [ ] https://github.com/fastapiutils/fastapi-utils/blob/master/.github/release.yml interesting changelog tool
-- [ ] release please option
 - [ ] why do we need the --vcs-ref=head option?
