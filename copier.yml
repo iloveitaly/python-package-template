@@ -48,6 +48,15 @@ github_username:
   help: GitHub username of the project owner (for pypi)
   default: "{{ \"gh api user --jq '.login'\" | shell() | trim }}"
 
+build_workflow:
+  type: str
+  help: Choose the GitHub Actions workflow for building and publishing
+  choices:
+    - release_please: "Release Please (automated releases, single OS)"
+    - release_please_matrix: "Release Please with Test Matrix (automated releases, cross-platform testing)"
+    - manual_matrix: "Manual Releases with Test Matrix (manual releases, cross-platform testing)"
+  default: release_please
+
 _exclude:
   - TODO
   - /.git
@@ -60,6 +69,18 @@ _exclude:
 _tasks:
   - '[ ! -d .git ] && git init'
   - touch README.md
+  - |
+    # Remove unused workflow files based on build_workflow choice
+    if [ "{{ build_workflow }}" = "release_please" ]; then
+      rm -f .github/workflows/build_and_publish_release_please_test_matrix.yml
+      rm -f .github/workflows/build_and_publish_test_matrix.yml
+    elif [ "{{ build_workflow }}" = "release_please_matrix" ]; then
+      rm -f .github/workflows/build_and_publish_release_please.yml
+      rm -f .github/workflows/build_and_publish_test_matrix.yml
+    elif [ "{{ build_workflow }}" = "manual_matrix" ]; then
+      rm -f .github/workflows/build_and_publish_release_please.yml
+      rm -f .github/workflows/build_and_publish_release_please_test_matrix.yml
+    fi
   - uv sync
   - git add -A
   - git commit -m "🎉 Initial commit"
