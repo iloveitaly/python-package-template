@@ -13,10 +13,11 @@ _jinja_extensions:
 _message_after_copy: |
   Next steps:
 
-    1. Customize secrets in .envrc
+    1. Customize secrets in .envrc, remove the database stuff if you don't need it.
     2. Run `direnv allow`
     3. Set PYPI_API_TOKEN on GH actions
     4. Set GH_TOKEN on GH actions
+    5. Remove docker-compose.yml if you don't need it. You'll also have to update the github workflows that depend on it.
 
 project_name:
   type: str
@@ -62,7 +63,6 @@ _tasks:
   - uv sync
   - git add -A
   - git commit -m "🎉 Initial commit"
-  # - ["{{ _copier_python }}", .copier/bootstrap.py]
 
 # although it's annoying to have the .copier-answers.yml file in the root, it allows `copier update`
 # to work properly
