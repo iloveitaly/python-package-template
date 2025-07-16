@@ -1,4 +1,4 @@
 python 3.13.5
-uv 0.7.20
+uv 0.7.21
 direnv 2.37.0
 just 1.42.2
