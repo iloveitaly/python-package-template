@@ -71,7 +71,7 @@ _exclude:
   - /metadata.json
 
 _tasks:
-  - '[ ! -d .git ] && git init'
+  - 'git rev-parse --is-inside-work-tree >/dev/null 2>&1 || git init'
   - touch README.md
   - |
     # Remove unused workflow files based on build_workflow choice
