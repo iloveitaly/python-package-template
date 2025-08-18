@@ -50,11 +50,15 @@ github_username:
 
 build_workflow:
   type: str
-  help: Choose the GitHub Actions workflow for building and publishing
+  help: |
+    Choose the GitHub Actions workflow for building and publishing.
+    - release_please: Release Please (automated releases, single OS)
+    - release_please_matrix: Release Please with Test Matrix (automated releases, cross-platform testing)
+    - manual_matrix: Manual Releases with Test Matrix (manual releases, cross-platform testing)
   choices:
-    release_please: "Release Please (automated releases, single OS)"
-    release_please_matrix: "Release Please with Test Matrix (automated releases, cross-platform testing)"
-    manual_matrix: "Manual Releases with Test Matrix (manual releases, cross-platform testing)"
+    - release_please
+    - release_please_matrix
+    - manual_matrix
   default: release_please
 
 _exclude:
