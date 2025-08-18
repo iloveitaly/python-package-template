@@ -71,7 +71,6 @@ _exclude:
   - /metadata.json
 
 _tasks:
-  - 'git rev-parse --is-inside-work-tree >/dev/null 2>&1 || git init'
   - touch README.md
   - |
     # Remove unused workflow files based on build_workflow choice
@@ -86,8 +85,13 @@ _tasks:
       rm -f .github/workflows/build_and_publish_release_please_test_matrix.yml
     fi
   - uv sync
-  - git add -A
-  - git commit -m "🎉 Initial commit"
+  - |
+    # Initialize and commit only if not already a git repo
+    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+      git init
+      git add -A
+      git commit -m "🎉 Initial commit"
+    fi
 
 # although it's annoying to have the .copier-answers.yml file in the root, it allows `copier update`
 # to work properly
