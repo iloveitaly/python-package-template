@@ -20,11 +20,11 @@ uv tool run --with jinja2_shell_extension copier@latest copy --trust --vcs-ref=H
 Here are the key tools and features provided:
 
 1. **`uv`**. Configured in the `.envrc` file with `layout uv`.
-2. **Makefile**. Provides commands for setting up (`make setup`) and cleaning (`make clean`) the project environment.
-1. **GitHub Actions.** Repo metadata sync, package build and publish.
-3. **Dependabot.**:
-4. **VS Code Settings.** Some important py config that is hard to figure out sometimes.
-5. **CLI Script Hook.** Remove if you aren't publishing a package with a CLI.
+2. **Justfile**. Provides commands for setting up (`just setup`) and cleaning (`just clean`) the project environment.
+3. **GitHub Actions.** Repo metadata sync, package build and publish.
+4. **Dependabot.**:
+5. **VS Code Settings.** Some important py config that is hard to figure out sometimes.
+6. **CLI Script Hook.** Remove if you aren't publishing a package with a CLI.
 
 ## Related
 
