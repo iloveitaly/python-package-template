@@ -1,7 +1,4 @@
-# Justfiles are nicer, and now we're using one!
-
-
-# Set up the Python environment
+# Set up the Python environment, done automatically for you when using direnv
 setup:
     uv venv && uv sync
     @echo "activate: source ./.venv/bin/activate"
