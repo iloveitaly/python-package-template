@@ -58,10 +58,8 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-{% if include_postgres -%}
 db.sqlite3
 db.sqlite3-journal
-{% endif %}
 
 # Flask stuff:
 instance/
