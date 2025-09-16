@@ -9,11 +9,11 @@ env:
   # avoid build failures due to flaky pypi
   PIP_DEFAULT_TIMEOUT: 60
   PIP_RETRIES: 5
-
+{% if include_postgres %}
   DATABASE_HOST: localhost
-
+{% endif %}
   # required otherwise github api calls are rate limited
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ "{{" }} "{{"  {{ "}}" }} secrets.GITHUB_TOKEN {{ "}}" }}
 
 jobs:
   publish:
@@ -25,20 +25,20 @@ jobs:
       - uses: jdx/mise-action@v3
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv build
-      - run: uv publish --token ${{ secrets.PYPI_API_TOKEN }}
+      - run: uv publish --token ${{ "{{" }} "{{"  {{ "}}" }} secrets.PYPI_API_TOKEN {{ "}}" }}
 
   release-please:
     runs-on: ubuntu-latest
     needs: [build]
     outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
+      release_created: ${{ "{{" }} steps.release.outputs.release_created  {{ "}}" }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
           release-type: python
           # bump-minor-pre-major: true
-          token: ${{ secrets.GH_PERSONAL_TOKEN }}
+          token: ${{ "{{" }} "{{"  {{ "}}" }} secrets.GH_PERSONAL_TOKEN {{ "}}" }}
 
   # NOTE you could easily pull the matrix
   build:
@@ -46,12 +46,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
-      - run: direnv allow . && direnv export gha >> "$GITHUB_ENV"
-      - run: docker compose up -d --wait
+      - run: direnv allow . && direnv export gha >> "$GITHUB_ENV"{% if include_postgres %}
+      - run: docker compose up -d --wait{% endif %}
       - run: uv sync
 
       # `uv run` prefix is required since the venv is not activated
 
       - name: Make sure the CLI runs properly
-        run: uv run ${{ github.event.repository.name }} --help
+        run: uv run ${{ "{{" }} github.event.repository.name  {{ "}}" }} --help
       - run: uv run pytest

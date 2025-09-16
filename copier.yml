@@ -13,11 +13,11 @@ _jinja_extensions:
 _message_after_copy: |
   Next steps:
 
-    1. Customize secrets in .envrc, remove the database stuff if you don't need it.
+    1. Customize secrets in .envrc{% if not include_postgres %}, no database configuration was included{% endif %}.
     2. Run `direnv allow`
     3. Set PYPI_API_TOKEN on GH actions
-    4. Set GH_TOKEN on GH actions
-    5. Remove docker-compose.yml if you don't need it. You'll also have to update the github workflows that depend on it.
+    4. Set GH_TOKEN on GH actions{% if include_postgres %}
+    5. Remove docker-compose.yml if you don't need it. You'll also have to update the github workflows that depend on it.{% endif %}
 
 project_name:
   type: str
@@ -61,6 +61,11 @@ build_workflow:
     - manual_matrix
   default: release_please
 
+include_postgres:
+  type: bool
+  help: Do you want to include PostgreSQL database support?
+  default: true
+
 _exclude:
   - TODO
   - /.git
@@ -84,6 +89,11 @@ _tasks:
     elif [ "{{ build_workflow }}" = "manual_matrix" ]; then
       rm -f .github/workflows/build_and_publish_release_please.yml
       rm -f .github/workflows/build_and_publish_release_please_test_matrix.yml
+    fi
+  - |
+    # Remove docker-compose.yml if postgres is not included
+    if [ "{{ include_postgres }}" = "False" ]; then
+      rm -f docker-compose.yml
     fi
   - uv sync
   - |
