@@ -1,3 +1,4 @@
+{% if include_postgres -%}
 # ports are not exposed locally, instead dynamic orb domains are used to avoid clobbering localhost ports
 services:
   # port 5432
@@ -34,3 +35,4 @@ services:
 volumes:
   # NOTE redis data is not persisted, assumed to be ephemeral
   app_postgres_data:
+{% endif %}

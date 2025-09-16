@@ -14,11 +14,11 @@ env:
   # avoid build failures due to flaky pypi
   PIP_DEFAULT_TIMEOUT: 60
   PIP_RETRIES: 5
-
+{% if include_postgres %}
   DATABASE_HOST: localhost
-
+{% endif %}
   # required otherwise github api calls are rate limited
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{"{{"}} secrets.GITHUB_TOKEN {{"}}"}}
 
 jobs:
   lint:
@@ -39,16 +39,16 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         python-version: ["3.13", "3.12", "3.11"]
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{"{{"}} matrix.os {{"}}"}}
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
-      - run: mise use python@${{ matrix.python-version }}
-      - uses: iloveitaly/github-action-direnv-load-and-mask@master
-      - run: docker compose up -d --wait
+      - run: mise use python@${{"{{"}} matrix.python-version {{"}}"}}
+      - uses: iloveitaly/github-action-direnv-load-and-mask@master{% if include_postgres %}
+      - run: docker compose up -d --wait{% endif %}
       - run: uv sync
       - name: Make sure the CLI runs properly
-        run: uv run ${{ github.event.repository.name }} --help
+        run: uv run ${{"{{"}} github.event.repository.name {{"}}"}} --help
       - run: uv run pytest
 
   build-and-publish:
@@ -66,7 +66,7 @@ jobs:
         id: changelog
         uses: TriPSs/conventional-changelog-action@v6
         with:
-          github-token: ${{ secrets.github_token }}
+          github-token: ${{"{{"}} secrets.github_token {{"}}"}}
           version-file: "./pyproject.toml"
           version-path: "project.version"
           fallback-version: "0.1.0"
@@ -74,17 +74,17 @@ jobs:
 
       # NOTE must run after versioning otherwise the right version won't be pushed
       - name: Build distribution package
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        if: ${{"{{"}} steps.changelog.outputs.skipped == 'false' {{"}}"}}
         run: uv build
 
       - name: Publish to PyPI
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        if: ${{"{{"}} steps.changelog.outputs.skipped == 'false' {{"}}"}}
         run: uv publish
 
       - name: Github Release
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        if: ${{"{{"}} steps.changelog.outputs.skipped == 'false' {{"}}"}}
         uses: softprops/action-gh-release@v2
         with:
           # output options: https://github.com/TriPSs/conventional-changelog-action#outputs
-          body: ${{ steps.changelog.outputs.clean_changelog }}
-          tag_name: ${{ steps.changelog.outputs.tag }}
+          body: ${{"{{"}} steps.changelog.outputs.clean_changelog {{"}}"}}
+          tag_name: ${{"{{"}} steps.changelog.outputs.tag {{"}}"}}

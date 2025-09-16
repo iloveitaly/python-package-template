@@ -1,5 +1,6 @@
 layout uv
 
+{% if include_postgres -%}
 # if you are using orb for local development, this will work just fine
 export DATABASE_HOST=${DATABASE_HOST:-postgres.$(basename $PWD).orb.local}
 export REDIS_HOST=${REDIS_HOST:-redis.$(basename $PWD).orb.local}
@@ -11,4 +12,5 @@ export POSTGRES_DB=development
 export DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_HOST}:5432/development
 export REDIS_URL=redis://${REDIS_HOST}:6379/1
 
+{% endif -%}
 export LOG_LEVEL=DEBUG
