@@ -15,9 +15,8 @@ _message_after_copy: |
 
     1. Customize secrets in .envrc, remove the database stuff if you don't need it.
     2. Run `direnv allow`
-    3. Set PYPI_API_TOKEN on GH actions
-    4. Set GH_TOKEN on GH actions
-    5. Remove docker-compose.yml if you don't need it. You'll also have to update the github workflows that depend on it.
+    3. Set GH_TOKEN on GH actions
+    4. Remove docker-compose.yml if you don't need it. You'll also have to update the github workflows that depend on it.
 
 project_name:
   type: str

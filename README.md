@@ -26,6 +26,27 @@ Here are the key tools and features provided:
 5. **VS Code Settings.** Some important py config that is hard to figure out sometimes.
 6. **CLI Script Hook.** Remove if you aren't publishing a package with a CLI.
 
+## Prompts
+
+```
+This repo:
+
+1. Has a generic/empty template for a python package
+2. Has a file extracted from a project which is $EXPLAIN
+
+Can you:
+
+1. $INTEGRATE_CODE
+2. Add any `uv add` packages required for this to run
+3. Make sure all tests pass. Add some basic tests for this.
+4. Update the #file:README.md 
+5. Update the `pyproject.toml` keywords and description based on the contents of this repo.
+```
+
+## Trusted Publishers
+
+This is setup to be used with PyPi trusted publishers. You can easily change this configuration by adding `--token ${{ secrets.PYPI_API_TOKEN }}` to the build workflows.
+
 ## Related
 
 * https://github.com/superlinear-ai/substrate
