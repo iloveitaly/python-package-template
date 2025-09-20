@@ -43,6 +43,9 @@ jobs:
   # NOTE you could easily pull the matrix
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
