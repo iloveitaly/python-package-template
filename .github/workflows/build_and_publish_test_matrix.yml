@@ -10,8 +10,11 @@ permissions:
   contents: write
 
 env:
+  # avoid build failures due to flaky pypi
   PIP_DEFAULT_TIMEOUT: 60
   PIP_RETRIES: 5
+
+  DATABASE_HOST: localhost
 
   # required otherwise github api calls are rate limited
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
