@@ -40,9 +40,19 @@ jobs:
           release-type: python
           # bump-minor-pre-major: true
           token: ${{ secrets.GH_PERSONAL_TOKEN }}
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: jdx/mise-action@v3
+        env:
+          MISE_ENV: ci
+      - uses: iloveitaly/github-action-direnv-load-and-mask@master
+      - run: uv sync
+      - run: just lint
 
-  # NOTE you could easily pull the matrix
   build:
+    needs: lint
     runs-on: ubuntu-latest
     permissions:
       id-token: write
