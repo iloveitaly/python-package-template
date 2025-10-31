@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - master
+  pull_request: {}
 
 # by default, permissions are read-only, read + write is required for git pushes
 permissions:
