@@ -29,6 +29,8 @@ Here are the key tools and features provided:
 
 ## Prompts
 
+Prompt to take this template, combined with code extracted from a project, and create an open source project.
+
 ```
 This repo:
 
@@ -37,11 +39,12 @@ This repo:
 
 Can you:
 
-1. $INTEGRATE_CODE
+1. $INTEGRATE_CODE_INSTRUCTIONS
 2. Add any `uv add` packages required for this to run
-3. Make sure all tests pass. Add some basic tests for this.
+3. Make sure all tests pass. Add some basic tests.
 4. Update the #file:README.md 
 5. Update the `pyproject.toml` keywords and description based on the contents of this repo.
+6. Remove the database configuration from .envrc, docker, GHA, etc if a postgres database is not required
 ```
 
 ## Trusted Publishers
