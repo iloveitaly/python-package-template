@@ -107,6 +107,7 @@ _tasks:
     if [ "{{ add_llm_rules }}" = "True" ]; then
       echo "Adding LLM IDE rules..."
       uvx llm-ide-rules download
+      git add -A && git commit -m "LLM rules"
     fi
 
 # although it's annoying to have the .copier-answers.yml file in the root, it allows `copier update`
