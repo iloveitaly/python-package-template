@@ -84,12 +84,15 @@ _tasks:
     if [ "{{ build_workflow }}" = "release_please" ]; then
       rm -f .github/workflows/build_and_publish_release_please_test_matrix.yml
       rm -f .github/workflows/build_and_publish_test_matrix.yml
+      mv .github/workflows/build_and_publish_release_please.yml .github/workflows/build_and_publish.yml
     elif [ "{{ build_workflow }}" = "release_please_matrix" ]; then
       rm -f .github/workflows/build_and_publish_release_please.yml
       rm -f .github/workflows/build_and_publish_test_matrix.yml
+      mv .github/workflows/build_and_publish_release_please_test_matrix.yml .github/workflows/build_and_publish.yml
     elif [ "{{ build_workflow }}" = "manual_matrix" ]; then
       rm -f .github/workflows/build_and_publish_release_please.yml
       rm -f .github/workflows/build_and_publish_release_please_test_matrix.yml
+      mv .github/workflows/build_and_publish_manual_test_matrix.yml .github/workflows/build_and_publish.yml
     fi
   - uv sync
   - |

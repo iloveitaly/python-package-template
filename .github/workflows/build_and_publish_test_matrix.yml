@@ -4,21 +4,37 @@ on:
     branches:
       - main
       - master
+  pull_request: {}
 
 # by default, permissions are read-only, read + write is required for git pushes
 permissions:
   contents: write
 
 env:
+  # avoid build failures due to flaky pypi
   PIP_DEFAULT_TIMEOUT: 60
   PIP_RETRIES: 5
+
+  DATABASE_HOST: localhost
 
   # required otherwise github api calls are rate limited
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: jdx/mise-action@v3
+        env:
+          MISE_ENV: ci
+      - uses: iloveitaly/github-action-direnv-load-and-mask@master
+      - run: uv sync
+      - run: just lint
+
   # if you want to test across multiple python versions
   matrix-test:
+    needs: lint
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -38,6 +54,9 @@ jobs:
   build-and-publish:
     needs: matrix-test
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
@@ -60,8 +79,7 @@ jobs:
 
       - name: Publish to PyPI
         if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        # `gh secret set PYPI_API_TOKEN --app actions --body $PYPI_API_TOKEN`
-        run: uv publish --token ${{ secrets.PYPI_API_TOKEN }}
+        run: uv publish
 
       - name: Github Release
         if: ${{ steps.changelog.outputs.skipped == 'false' }}
