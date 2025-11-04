@@ -25,6 +25,7 @@ Here are the key tools and features provided:
 4. **Dependabot.**:
 5. **VS Code Settings.** Some important py config that is hard to figure out sometimes.
 6. **CLI Script Hook.** Remove if you aren't publishing a package with a CLI.
+7. **LLM IDE Rules.** Optional setup for better AI-assisted development with GitHub Copilot, Cursor, etc.
 
 ## Prompts
 
