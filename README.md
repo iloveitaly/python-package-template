@@ -43,7 +43,7 @@ Can you:
 2. Add any `uv add` packages required for this to run
 3. Make sure all tests pass. Add some basic tests.
 4. Update the #file:README.md 
-5. Update the `pyproject.toml` keywords and description based on the contents of this repo.
+5. Update the `pyproject.toml` keywords (maximum of 4) and description based on the contents of this repo.
 6. Remove the database configuration from .envrc, docker, GHA, etc if a postgres database is not required
 ```
 
