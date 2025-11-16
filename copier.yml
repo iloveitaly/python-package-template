@@ -13,11 +13,11 @@ _jinja_extensions:
 _message_after_copy: |
   Next steps:
 
-    1. Customize secrets in .envrc{% if not include_postgres %}, no database configuration was included{% endif %}.
+    1. Customize secrets in .envrc{% if not include_postgres %}, no database/cache configuration was included{% endif %}.
     2. Run `direnv allow`
     3. Set PYPI_API_TOKEN on GH actions
     4. Set GH_TOKEN on GH actions{% if include_postgres %}
-    5. You can remove docker-compose.yml if you don't need it. You'll also have to update the github workflows that depend on it.{% endif %}
+    5. docker-compose.yml includes PostgreSQL and Redis. Remove it if you don't need it (you'll also have to update the github workflows that depend on it).{% endif %}
     {% if add_llm_rules %}6. LLM IDE rules have been added to improve AI-assisted development.{% endif %}
 
 project_name:
@@ -69,7 +69,7 @@ add_llm_rules:
 
 include_postgres:
   type: bool
-  help: Do you want to include PostgreSQL database support?
+  help: Do you want to include PostgreSQL and Redis support (via docker-compose)?
   default: true
 
 _exclude:
@@ -100,7 +100,7 @@ _tasks:
       mv .github/workflows/build_and_publish_test_matrix.yml.jinja .github/workflows/build_and_publish.yml
     fi
   - |
-    # Remove docker-compose.yml if postgres is not included
+    # Remove docker-compose.yml if database/cache services are not included
     if [ "{{ include_postgres }}" = "False" ]; then
       rm -f docker-compose.yml
     fi
