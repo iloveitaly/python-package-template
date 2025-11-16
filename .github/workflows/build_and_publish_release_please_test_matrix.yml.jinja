@@ -13,11 +13,11 @@ env:
   # avoid build failures due to flaky pypi
   PIP_DEFAULT_TIMEOUT: 60
   PIP_RETRIES: 5
-
+{% if include_postgres %}
   DATABASE_HOST: localhost
-
+{% endif %}
   # required otherwise github api calls are rate limited
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{"{{"}} secrets.GITHUB_TOKEN {{"}}"}}
 
 jobs:
   lint:
@@ -36,36 +36,36 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        python-version: ["3.14", "3.13", "3.12", "3.11"]
-    runs-on: ${{ matrix.os }}
+        python-version: ["3.13", "3.12", "3.11"]
+    runs-on: ${{"{{"}} matrix.os {{"}}"}}
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
-      - run: mise use python@${{ matrix.python-version }}
-      - run: docker compose up -d --wait
+      - run: mise use python@${{"{{"}} matrix.python-version {{"}}"}}{% if include_postgres %}
+      - run: docker compose up -d --wait{% endif %}
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync
       - name: Check CLI
-        run: uv run ${{ github.event.repository.name }} --help
+        run: uv run ${{"{{"}} github.event.repository.name {{"}}"}} --help
       - run: uv run pytest
 
   release-please:
     needs: matrix-test
     runs-on: ubuntu-latest
     outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
+      release_created: ${{"{{"}} steps.release.outputs.release_created {{"}}"}}
     steps:
       - uses: actions/checkout@v5
       - uses: googleapis/release-please-action@v4
         id: release
         with:
           release-type: python
-          token: ${{ secrets.GH_PERSONAL_TOKEN }}
+          token: ${{"{{"}} secrets.GH_PERSONAL_TOKEN {{"}}"}}
 
   build-and-publish:
     needs: release-please
     runs-on: ubuntu-latest
-    if: ${{ needs.release-please.outputs.release_created }}
+    if: ${{"{{"}} needs.release-please.outputs.release_created {{"}}"}}
     permissions:
       id-token: write
       contents: read
