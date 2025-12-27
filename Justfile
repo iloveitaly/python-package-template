@@ -11,17 +11,17 @@ up:
 test:
     uv run pytest -v
 
-# Run linting checks
+# python linting checks
+[script]
 lint FILES=".":
-    #!/usr/bin/env bash
     set +e
     exit_code=0
-    
+
     if [ -n "${CI:-}" ]; then
         # CI mode: GitHub-friendly output
         uv run ruff check --output-format=github {{FILES}} || exit_code=$?
         uv run ruff format --check {{FILES}} || exit_code=$?
-        
+
         uv run pyright {{FILES}} --outputjson > pyright_report.json || exit_code=$?
         jq -r \
             --arg root "$GITHUB_WORKSPACE/" \
@@ -38,7 +38,7 @@ lint FILES=".":
         uv run ruff format --check {{FILES}} || exit_code=$?
         uv run pyright {{FILES}} || exit_code=$?
     fi
-    
+
     if [ $exit_code -ne 0 ]; then
         echo "One or more linting checks failed"
         exit 1
