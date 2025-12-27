@@ -42,7 +42,7 @@ Can you:
 1. $INTEGRATE_CODE_INSTRUCTIONS
 2. Add any `uv add` packages required for this to run
 3. Make sure all tests pass. Add some basic tests.
-4. Update the #file:README.md 
+4. Update the #file:README.md
 5. Update the `pyproject.toml` keywords (maximum of 4) and description based on the contents of this repo.
 6. Remove the database configuration from .envrc, docker, GHA, etc if a postgres database is not required
 ```
@@ -50,6 +50,18 @@ Can you:
 ## Trusted Publishers
 
 This is setup to be used with PyPi trusted publishers. You can easily change this configuration by adding `--token ${{ secrets.PYPI_API_TOKEN }}` to the build workflows.
+
+## Other Helpful Scripts
+
+Configure permissions for a workflow:
+
+```shell
+repo_path=$(gh repo view --json nameWithOwner --jq '.nameWithOwner') && \
+  gh api --method PUT "/repos/${repo_path}/actions/permissions/workflow" \
+    -f default_workflow_permissions=write \
+    -F can_approve_pull_request_reviews=true && \
+  gh api "/repos/${repo_path}/actions/permissions/workflow"
+```
 
 ## Related
 
