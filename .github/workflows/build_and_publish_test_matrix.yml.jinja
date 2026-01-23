@@ -24,7 +24,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
         env:
           MISE_ENV: ci
@@ -41,7 +41,7 @@ jobs:
         python-version: ["3.13", "3.12", "3.11"]
     runs-on: ${{"{{"}} matrix.os {{"}}"}}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
       - run: mise use python@${{"{{"}} matrix.python-version {{"}}"}}
       - uses: iloveitaly/github-action-direnv-load-and-mask@master{% if include_postgres %}
@@ -58,7 +58,7 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
       - run: uv sync
 
