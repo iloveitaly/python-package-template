@@ -15,9 +15,8 @@ _message_after_copy: |
 
     1. Customize secrets in .envrc{% if not include_postgres %}, no database/cache configuration was included{% endif %}.
     2. Run `direnv allow`
-    3. Set PYPI_API_TOKEN on GH actions
-    4. Set GH_TOKEN on GH actions{% if include_postgres %}
-    5. docker-compose.yml includes PostgreSQL and Redis. Remove it if you don't need it (you'll also have to update the github workflows that depend on it).{% endif %}
+    3. Set GH_TOKEN on GH actions{% if include_postgres %}
+    4. docker-compose.yml includes PostgreSQL and Redis. Remove it if you don't need it (you'll also have to update the github workflows that depend on it).{% endif %}
     {% if add_llm_rules %}6. LLM IDE rules have been added to improve AI-assisted development.{% endif %}
 
 project_name:
