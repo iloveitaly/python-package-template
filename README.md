@@ -43,7 +43,7 @@ Can you:
 2. Add any `uv add` packages required for this to run
 3. Make sure all tests pass. Add some basic tests.
 4. Update the @README.md
-5. Update the `pyproject.toml` keywords (maximum of 4) and description based on the contents of this repo.
+5. Update the `pyproject.toml` keywords (maximum of 4) and description based on the contents of this repo. Do not use `.` in a keyword.
 6. Make sure all linting issues are corrected by running `just lint`
 ```
 
