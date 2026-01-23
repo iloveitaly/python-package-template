@@ -35,16 +35,16 @@ Prompt to take this template, combined with code extracted from a project, and c
 This repo:
 
 1. Has a generic/empty template for a python package
-2. Has a file extracted from a project which is $EXPLAIN
+2. Has a file extracted from a project @extract.py
 
 Can you:
 
 1. $INTEGRATE_CODE_INSTRUCTIONS
 2. Add any `uv add` packages required for this to run
 3. Make sure all tests pass. Add some basic tests.
-4. Update the #file:README.md
+4. Update the @README.md
 5. Update the `pyproject.toml` keywords (maximum of 4) and description based on the contents of this repo.
-6. Remove the database configuration from .envrc, docker, GHA, etc if a postgres database is not required
+6. Make sure all linting issues are corrected by running `just lint`
 ```
 
 ## Trusted Publishers
