@@ -26,6 +26,7 @@ Here are the key tools and features provided:
 5. **VS Code Settings.** Some important py config that is hard to figure out sometimes.
 6. **CLI Script Hook.** Remove if you aren't publishing a package with a CLI.
 7. **LLM IDE Rules.** Optional setup for better AI-assisted development with GitHub Copilot, Cursor, etc.
+8. **GitHub Configuration.** `just` recipes to configure your GitHub repo.
 
 ## Prompts
 
@@ -50,18 +51,6 @@ Can you:
 ## Trusted Publishers
 
 This is setup to be used with PyPi trusted publishers. You can easily change this configuration by adding `--token ${{ secrets.PYPI_API_TOKEN }}` to the build workflows.
-
-## Other Helpful Scripts
-
-Configure permissions for a workflow:
-
-```shell
-repo_path=$(gh repo view --json nameWithOwner --jq '.nameWithOwner') && \
-  gh api --method PUT "/repos/${repo_path}/actions/permissions/workflow" \
-    -f default_workflow_permissions=write \
-    -F can_approve_pull_request_reviews=true && \
-  gh api "/repos/${repo_path}/actions/permissions/workflow"
-```
 
 ## Related
 
