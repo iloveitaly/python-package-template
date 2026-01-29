@@ -1,2 +1,8 @@
 - [ ] https://github.com/fastapiutils/fastapi-utils/blob/master/.github/release.yml interesting changelog tool
 - [ ] why do we need the --vcs-ref=head option?
+
+```
+# additional packaging information: https://packaging.python.org/en/latest/specifications/core-metadata/#license
+[project.entry-points.pytest11]
+playwright_artifacts = "pytest_playwright_artifacts"
+```
