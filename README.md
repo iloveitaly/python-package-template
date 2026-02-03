@@ -2,6 +2,8 @@
 
 Do you like building python packages? Do you hate configuring all of the things? This is for you.
 
+[![Extracting Project Tooling into a PyPi Package](https://img.youtube.com/vi/FaQrM-85DEk/0.jpg)](https://www.youtube.com/watch?v=FaQrM-85DEk)
+
 Create a new folder with your package name (this makes it easier to infer the package name from the folder name via copier scripts):
 
 ```shell
