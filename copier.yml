@@ -61,6 +61,11 @@ build_workflow:
     - manual_matrix
   default: release_please
 
+publish_docker_image:
+  type: bool
+  help: Build and publish a Docker image to ghcr.io?
+  default: false
+
 add_llm_rules:
   type: bool
   help: Add LLM IDE rules for better AI-assisted development (GitHub Copilot, Cursor, etc.)?
