@@ -18,6 +18,7 @@ env:
 {% endif %}
   # required otherwise github api calls are rate limited
   GITHUB_TOKEN: ${{"{{"}} secrets.GITHUB_TOKEN {{"}}"}}
+  MISE_ENV: ci
 
 jobs:
   lint:
@@ -25,8 +26,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
-        env:
-          MISE_ENV: ci
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync
       - run: just lint
