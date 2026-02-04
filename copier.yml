@@ -87,7 +87,6 @@ _exclude:
   - /copier.yml
 
 _tasks:
-  - touch README.md
   - |
     # Remove unused workflow files based on build_workflow choice
     if [ "{{ build_workflow }}" = "release_please" ]; then
