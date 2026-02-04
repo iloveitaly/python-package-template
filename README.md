@@ -1,6 +1,8 @@
-# Python Package Template
+# Python PyPi Package Template
 
 Do you like building python packages? Do you hate configuring all of the things? This is for you.
+
+Here's a video demonstrating how to create a package. It's pretty short and shows you how to walk through the whole process:
 
 [![Extracting Project Tooling into a PyPi Package](https://img.youtube.com/vi/FaQrM-85DEk/0.jpg)](https://www.youtube.com/watch?v=FaQrM-85DEk)
 
