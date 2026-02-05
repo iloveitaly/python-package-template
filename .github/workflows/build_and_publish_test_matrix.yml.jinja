@@ -49,7 +49,7 @@ jobs:
       - run: uv sync
       - name: Make sure the CLI runs properly
         run: uv run ${{"{{"}} github.event.repository.name {{"}}"}} --help
-      - run: uv run pytest
+      - run: just test
 
   build-and-publish:
     needs: matrix-test
