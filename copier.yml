@@ -79,7 +79,6 @@ include_postgres:
 _exclude:
   - TODO
   - /.git
-  - /README.md
   - /CHANGELOG.md
   - /LICENSE
   - /uv.lock
