@@ -32,7 +32,7 @@ Here are the key tools and features provided:
 7. **LLM IDE Rules.** Optional setup for better AI-assisted development with GitHub Copilot, Cursor, etc.
 8. **GitHub Configuration.** `just` recipes to configure your GitHub repo.
 
-## Prompts
+## User Prompts
 
 Prompt to take this template, combined with code extracted from a project, and create an open source project.
 
@@ -50,6 +50,12 @@ Can you:
 4. Update the @README.md
 5. Update the `pyproject.toml` keywords (maximum of 4) and description based on the contents of this repo. Do not use `.` in a keyword.
 6. Make sure all linting issues are corrected by running `just lint`
+```
+
+## Template Prompts
+
+```md
+Inspect pyproject.toml.jinja and update the version minimums to the be the current values of the resolved packages.
 ```
 
 ## Trusted Publishers
