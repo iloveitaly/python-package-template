@@ -1,7 +1,6 @@
-from structlog_config import configure_logger
+import structlog
 
-logger = configure_logger()
-
+log = structlog.get_logger(logger_name=__package__)
 
 def main():
     logger.info("Hello, Logs!")
