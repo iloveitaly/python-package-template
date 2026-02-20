@@ -4,8 +4,11 @@ setup:
     @echo "activate: source ./.venv/bin/activate"
 
 # Start docker services
-up:
+docker_up:
     docker compose up -d --wait
+
+docker_down:
+	docker compose down
 
 # Run tests
 test:
