@@ -1,5 +1,6 @@
 # Set up the Python environment, done automatically for you when using direnv
 setup:
+    [ -f .env ] || cp .env-example .env
     uv venv && uv sync
     @echo "activate: source ./.venv/bin/activate"
 
