@@ -115,8 +115,8 @@ _tasks:
       git commit -m "🎉 Initial commit"
     fi
   - |
-    # Add LLM IDE rules if requested
-    if [ "{{ add_llm_rules }}" = "True" ]; then
+    # Add LLM IDE rules if requested (only on initial install)
+    if [ "{{ add_llm_rules }}" = "True" ] && [ "$OPERATION" = "copy" ]; then
       echo "Adding LLM IDE rules..."
       uvx llm-ide-rules download --repo https://github.com/iloveitaly/python-package-prompts
       git add -A && git commit -m "LLM rules"
