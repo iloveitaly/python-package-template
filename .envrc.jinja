@@ -1,5 +1,3 @@
-layout uv
-
 {% if include_postgres -%}
 # if you are using orb for local development, this will work just fine
 export DATABASE_HOST=${DATABASE_HOST:-postgres.$(basename $PWD).orb.local}

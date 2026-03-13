@@ -82,6 +82,7 @@ _exclude:
   - /CHANGELOG.md
   - /LICENSE
   - /uv.lock
+  - /mise.lock
   - /metadata.json
   - /copier.yml
 
@@ -106,6 +107,8 @@ _tasks:
     if [ "{{ include_postgres }}" = "False" ]; then
       rm -f docker-compose.yml
     fi
+  - mise install
+  - mise lock
   - uv sync
   - |
     # Initialize and commit only if not already a git repo
