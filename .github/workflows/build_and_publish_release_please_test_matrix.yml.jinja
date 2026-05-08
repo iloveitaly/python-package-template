@@ -46,8 +46,10 @@ jobs:
       - run: docker compose up -d --wait{% endif %}
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync
+{% if is_cli_tool %}
       - name: Check CLI
         run: uv run ${{"{{"}} github.event.repository.name {{"}}"}} --help
+{% endif %}
       - run: just test
 
   release-please:

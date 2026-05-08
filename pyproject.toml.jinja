@@ -9,9 +9,11 @@ dependencies = []
 authors = [{ name = "{{full_name}}", email = "{{email}}" }]
 urls = { "Repository" = "https://github.com/{{github_username}}/{{project_name}}" }
 
+{% if is_cli_tool %}
 # additional packaging information: https://packaging.python.org/en/latest/specifications/core-metadata/#license
 [project.scripts]
 {{project_name}} = "{{project_name_snake_case}}:main"
+{% endif %}
 
 [build-system]
 requires = ["uv_build>=0.11.0,<0.12"]

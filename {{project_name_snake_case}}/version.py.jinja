@@ -13,7 +13,7 @@ def is_local_source_checkout() -> bool:
     return (repo_root / ".git").exists() and (repo_root / "pyproject.toml").exists()
 
 
-def get_cli_version() -> str:
+def get_version() -> str:
     """Get the version string, appending .dev if running from source."""
     try:
         # Try to get the version of the installed package
@@ -31,4 +31,4 @@ def get_cli_version() -> str:
     return f"{version}.dev"
 
 
-__version__ = get_cli_version()
+__version__ = get_version()

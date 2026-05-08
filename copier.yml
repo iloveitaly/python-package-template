@@ -76,6 +76,11 @@ include_postgres:
   help: Do you want to include PostgreSQL and Redis support (via docker-compose)?
   default: true
 
+is_cli_tool:
+  type: bool
+  help: Does this project provide a CLI tool?
+  default: true
+
 _exclude:
   - TODO
   - /.git

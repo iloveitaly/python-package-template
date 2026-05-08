@@ -93,6 +93,8 @@ jobs:
 
       # `uv run` prefix is required since the venv is not activated
 
+{% if is_cli_tool %}
       - name: Make sure the CLI runs properly
         run: uv run ${{"{{"}} github.event.repository.name {{"}}"}} --help
+{% endif %}
       - run: just test
