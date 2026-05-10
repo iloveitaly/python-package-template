@@ -36,17 +36,17 @@ project_name_snake_case:
 full_name:
   type: str
   help: Full name of the project owner (for pypi)
-  default: "{{ \"git config --global user.name\" | shell(die_on_error=True) | trim }}"
+  default: "{{ \"git config user.name\" | shell() | trim }}"
 
 email:
   type: str
   help: Email of the project owner (for pypi)
-  default: "{{ \"git config --global user.email\" | shell(die_on_error=True) | trim }}"
+  default: "{{ \"git config user.email\" | shell() | trim }}"
 
 github_username:
   type: str
   help: GitHub username of the project owner (for pypi)
-  default: "{{ \"gh api user --jq '.login'\" | shell(die_on_error=True) | trim }}"
+  default: "{{ \"gh api user --jq '.login'\" | shell() | trim }}"
 
 build_workflow:
   type: str
