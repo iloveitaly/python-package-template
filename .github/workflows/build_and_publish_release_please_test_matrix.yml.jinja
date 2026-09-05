@@ -90,6 +90,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
+          # Check out branch instead of detached HEAD so bare git push works
           ref: ${{"{{"}} github.ref_name {{"}}"}}
       - uses: jdx/mise-action@v4
         with:
@@ -100,6 +101,7 @@ jobs:
       - run: uv build
       - run: uv publish
 
+      # Keep uv.lock in sync with pyproject.toml after release version bump without requiring extra config files
       - name: Sync uv.lock
         run: |
           uv lock
