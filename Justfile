@@ -60,6 +60,10 @@ lint FILES=".":
         uv run pyright {{FILES}} || exit_code=$?
     fi
 
+    # Scan git history for secrets. Baseline false positives with:
+    #   gitleaks git --report-format json --report-path - | jq -r '.[].Fingerprint' | sort > .gitleaksignore
+    gitleaks git --no-banner --redact=20 || exit_code=$?
+
     if [ $exit_code -ne 0 ]; then
         echo "One or more linting checks failed"
         exit 1
