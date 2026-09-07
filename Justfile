@@ -60,14 +60,23 @@ lint FILES=".":
         uv run pyright {{FILES}} || exit_code=$?
     fi
 
-    # Scan git history for secrets. Baseline false positives with:
-    #   gitleaks git --report-format json --report-path - | jq -r '.[].Fingerprint' | sort > .gitleaksignore
+    # Scan git history for secrets. `just gitleaks_baseline` writes .gitleaksignore.
     gitleaks git --no-banner --redact=20 || exit_code=$?
 
     if [ $exit_code -ne 0 ]; then
         echo "One or more linting checks failed"
         exit 1
     fi
+
+# Write current gitleaks findings to .gitleaksignore
+[script]
+gitleaks_baseline:
+    tmp=$(mktemp)
+    # gitleaks exits 1 when it finds secrets; that's expected while baselining
+    gitleaks git --no-banner --redact=20 --report-format json --report-path="$tmp" || true
+    jq -r '(. // [])[] | .Fingerprint' "$tmp" | sort > .gitleaksignore
+    rm -f "$tmp"
+    echo "Wrote $(wc -l < .gitleaksignore | tr -d ' ') fingerprints to .gitleaksignore"
 
 # Automatically fix linting errors
 lint-fix:
