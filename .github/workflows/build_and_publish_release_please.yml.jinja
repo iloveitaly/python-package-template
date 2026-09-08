@@ -22,12 +22,15 @@ jobs:
     needs: [release-please]
     if: needs.release-please.outputs.release_created
     permissions:
-      contents: read
+      contents: write
 {% if publish_docker_image %}
       packages: write
 {% endif %}
     steps:
       - uses: actions/checkout@v6
+        with:
+          # Check out branch instead of detached HEAD so bare git push works
+          ref: ${{"{{"}} github.ref_name {{"}}"}}
       - uses: jdx/mise-action@v4
         with:
           bootstrap: true
@@ -35,6 +38,12 @@ jobs:
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv build
       - run: uv publish
+
+      # Keep uv.lock in sync with pyproject.toml after release version bump without requiring extra config files
+      - name: Sync uv.lock
+        run: |
+          uv lock
+          git -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" commit -am "chore(deps): update uv.lock [skip ci]" && git push || true
 
 {% if publish_docker_image %}
       - name: Login to GHCR
