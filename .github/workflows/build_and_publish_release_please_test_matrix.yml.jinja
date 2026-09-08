@@ -15,6 +15,7 @@ env:
   PIP_RETRIES: 5
 {% if include_postgres %}
   DATABASE_HOST: localhost
+  REDIS_HOST: localhost
 {% endif %}
   # required otherwise github api calls are rate limited
   GITHUB_TOKEN: ${{"{{"}} secrets.GITHUB_TOKEN {{"}}"}}
