@@ -116,8 +116,8 @@ _tasks:
   - mise lock
   - uv sync
   - |
-    # Initialize and commit only if not already a git repo
-    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    # Initialize and commit only on initial copy and if not already a git repo
+    if [ "$OPERATION" = "copy" ] && ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
       git init
       git add -A
       git commit -m "🎉 Initial commit"
