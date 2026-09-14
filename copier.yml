@@ -117,21 +117,21 @@ _tasks:
   - uv sync
   - |
     # Initialize and commit only on initial copy and if not already a git repo
-    if [ "$OPERATION" = "copy" ] && ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    if [ "$COPIER_OPERATION" = "copy" ] && ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
       git init
       git add -A
       git commit -m "🎉 Initial commit"
     fi
   - |
     # Add LLM IDE rules if requested (only on initial install)
-    if [ "{{ add_llm_rules }}" = "True" ] && [ "$OPERATION" = "copy" ]; then
+    if [ "{{ add_llm_rules }}" = "True" ] && [ "$COPIER_OPERATION" = "copy" ]; then
       echo "Adding LLM IDE rules..."
       uvx llm-ide-rules download --repo https://github.com/iloveitaly/python-package-prompts
       git add -A && git commit -m "LLM rules"
     fi
   - |
     # Upgrade tools and dependencies
-    if [ "$OPERATION" = "copy" ]; then
+    if [ "$COPIER_OPERATION" = "copy" ]; then
       just upgrade
       if [ -n "$(git status --porcelain)" ]; then
         git add -A && git commit -m "chore(deps): upgrade dependencies"
