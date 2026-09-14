@@ -129,6 +129,14 @@ _tasks:
       uvx llm-ide-rules download --repo https://github.com/iloveitaly/python-package-prompts
       git add -A && git commit -m "LLM rules"
     fi
+  - |
+    # Upgrade tools and dependencies
+    if [ "$OPERATION" = "copy" ]; then
+      just upgrade
+      if [ -n "$(git status --porcelain)" ]; then
+        git add -A && git commit -m "chore(deps): upgrade dependencies"
+      fi
+    fi
   - direnv allow .
 
 # although it's annoying to have the .copier-answers.yml file in the root, it allows `copier update`
