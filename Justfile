@@ -9,6 +9,8 @@ setup:
     uv sync
     # Calling the CLI tool installs a .pth file into the virtualenv for nice tracebacks
     uv run beautiful-traceback
+    # Keep IDE-specific rule files in sync with instructions.md
+    if [ -f instructions.md ]; then uvx llm-ide-rules explode; fi
     @echo "activate: source ./.venv/bin/activate"
 
 # Start docker services

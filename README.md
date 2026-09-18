@@ -29,7 +29,7 @@ Here are the key tools and features provided:
 4. **Dependabot.**:
 5. **VS Code Settings.** Some important py config that is hard to figure out sometimes.
 6. **CLI Script Hook.** Remove if you aren't publishing a package with a CLI.
-7. **LLM IDE Rules.** Optional setup for better AI-assisted development with GitHub Copilot, Cursor, etc.
+7. **LLM IDE Rules.** Optional setup for better AI-assisted development with GitHub Copilot, Cursor, etc. `just setup` explodes `instructions.md` into IDE-specific rule files when that file is present.
 8. **GitHub Configuration.** `just` recipes to configure your GitHub repo.
 9. **Gitleaks.** Installed via mise and run as part of `just lint` to scan git history for secrets. `just gitleaks_baseline` writes `.gitleaksignore` from current findings.
 
