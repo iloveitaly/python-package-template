@@ -5,8 +5,7 @@ set script-interpreter := ["zsh", "-euo", "pipefail"]
 # Set up the Python environment, done automatically for you when using direnv
 setup:
     [ -f .env ] || cp .env-example .env
-    [ -d .venv ] || uv venv
-    uv sync
+    uv venv --allow-existing && uv sync
     # Calling the CLI tool installs a .pth file into the virtualenv for nice tracebacks
     uv run beautiful-traceback
     # Keep IDE-specific rule files in sync with instructions.md
