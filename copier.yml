@@ -46,7 +46,7 @@ email:
 github_username:
   type: str
   help: GitHub username of the project owner (for pypi)
-  default: "{{ \"gh api user --jq '.login'\" | shell() | trim }}"
+  default: "{{ \"GH_PAGER=cat gh api user --jq '.login'\" | shell() | trim }}"
 
 build_workflow:
   type: str
