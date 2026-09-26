@@ -90,6 +90,7 @@ _exclude:
   - /mise.lock
   - /metadata.json
   - /copier.yml
+  - "{% if not publish_docker_image %}.dockerignore{% endif %}"
 
 _tasks:
   - |
@@ -111,6 +112,11 @@ _tasks:
     # Remove docker-compose.yml if database/cache services are not included
     if [ "{{ include_postgres }}" = "False" ]; then
       rm -f docker-compose.yml
+    fi
+  - |
+    # Remove .dockerignore if docker image is not published
+    if [ "{{ publish_docker_image }}" = "False" ]; then
+      rm -f .dockerignore
     fi
   - mise install
   - mise lock
