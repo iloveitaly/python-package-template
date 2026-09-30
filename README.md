@@ -24,7 +24,7 @@ uv tool run --with jinja2_shell_extension copier@latest copy --trust --vcs-ref=H
 Here are the key tools and features provided:
 
 1. **`uv`**. Configured in the `.envrc` file with `layout uv`.
-2. **Justfile**. Provides commands for setting up (`just setup`) and cleaning (`just clean`) the project environment.
+2. **Justfile**. Provides commands for setting up (`just setup`) and cleaning (`just clean`) the project environment. CLI projects also include `just install_editable` to install the checkout globally and update existing mise installations.
 3. **GitHub Actions.** Repo metadata sync, package build and publish.
 4. **Dependabot.**:
 5. **VS Code Settings.** Some important py config that is hard to figure out sometimes.

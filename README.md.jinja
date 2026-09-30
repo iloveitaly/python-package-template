@@ -11,6 +11,14 @@
 uv add {{ project_name }}
 ```
 
+{% if is_cli_tool %}
+## Local CLI development
+
+Run `just install_editable` to install this checkout globally in editable mode. Source changes are reflected without reinstalling.
+
+This requires `uv`, `just`, `zsh`, and `jq`. If mise is available, the recipe also updates every installed `pipx:{{ project_name }}` environment so mise can use the local checkout. Re-run after mise upgrades, which replace those editable installations.
+
+{% endif %}
 ---
 
 *This project was created from [iloveitaly/python-package-template](https://github.com/iloveitaly/python-package-template)*
