@@ -11,3 +11,13 @@ gitleaks = "latest"
 
 [settings]
 python.uv_venv_auto = "create|source"
+# Linux and macOS only. Windows lock entries break direnv upgrades when the
+# release asset is renamed (direnv.windows-amd64 -> direnv.windows-amd64.exe).
+lockfile_platforms = [
+  "linux-x64",
+  "linux-x64-musl",
+  "linux-arm64",
+  "linux-arm64-musl",
+  "macos-x64",
+  "macos-arm64",
+]
