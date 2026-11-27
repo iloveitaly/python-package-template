@@ -73,6 +73,8 @@ upgrade bump_constraints="false":
     # Upgrade keeps the backend recorded in mise.lock. Switch first so the bump installs from the registry's current backend.
     mise backends switch --yes
     mise upgrade --yes --local
+    # Upgrade rewrites the current platform. Lock refreshes the other lockfile_platforms entries.
+    mise lock
     uv sync --all-groups --all-extras -U
 
     if [ "{{bump_constraints}}" = "true" ]; then
